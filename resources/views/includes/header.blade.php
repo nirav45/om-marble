@@ -1,7 +1,7 @@
 <div class="header-main">
     <div class="container">
         <nav data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" id="topNavbar" class="navbar navbar-expand-md fixed-top navbar-light">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{route('home')}}">
                 <img src="{{asset('img/logo-square.png')}}" alt="logo" style="width: 50px">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

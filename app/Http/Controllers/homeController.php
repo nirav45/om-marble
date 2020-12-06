@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Address;
 use App\Models\Contact;
-use Illuminate\Http\Request;
-
+use App\Models\Product;
 
 class homeController extends Controller
 {
 
     public function index()
     {
-        $addresses = Address::all();
-        $contact = Contact::all();
-        return view('home', ['page' => 'home', 'addresses' => $addresses, 'contact' => $contact]);
+        $contact = Contact::first();
+        $products = Product::limit(10);
+        return view('home', ['page' => 'home', 'contact' => $contact, 'products' => $products]);
     }
 }

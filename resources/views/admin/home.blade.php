@@ -32,89 +32,18 @@
 				</div>
 				<div data-aos="zoom-in" class="carousel-multi-item text-center">
 				    <div class="owl-carousel-tiles owl-carousel owl-theme">
-				    	<a href="product-details.html">
-				    		<div class="card">
-							  	<div class="card-body">
-							  		<h5>Type 1</h5>
-							  	</div>
-							  	<div class="card-img">
-							  		<img class="card-img-bottom" src="img/tiles1.jpg">
-							  	</div>
-							</div>
-				    	</a>
-				    	
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 2</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles2.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 3</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles3.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 4</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles4.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 5</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles5.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 6</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles6.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 7</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles7.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 8</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles8.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 9</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles9.jpg">
-						  	</div>
-						  </div>
-						  <div class="card">
-						  	<div class="card-body">
-						  		<h5>Type 10</h5>
-						  	</div>
-						  	<div class="card-img">
-						  		<img class="card-img-bottom" src="img/tiles10.jpg">
-						  	</div>
-						  </div>
+						@foreach ($products as $product)
+							<a href="{{ route('adminproduct', ['id' => $product->id]) }}">
+								<div class="card">
+									<div class="card-body">
+										<h5>{{ $product->name }}</h5>
+									</div>
+									<div class="card-img">
+										<img class="card-img-bottom" src="{{ asset('storage/'.$product->image)}}">
+									</div>
+								</div>
+							</a>
+						@endforeach
 					</div>
 				</div>
 			</div>

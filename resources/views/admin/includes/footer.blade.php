@@ -2,28 +2,29 @@
     <div class="container">
         <div class="row">
             <div class="col-md-1 offset-md-11">
-                <a href="{{ route('initFooterData') }}">
-                    <button type="button" class="btn btn-primary">
-                        Initiate Data
-                    </button>
-                </a>
+            <button type="button" class="btn btn-primary change-address" data-toggle="modal" data-target="#editfooterDataModal">
+                <i class="fas fa-edit"></i>
+            </button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 row">
-    			@foreach ($addresses as $address)
                 <div data-aos="zoom-in" class="col-md-6">
                     <div class="footer-contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="footer-contact-text">
-                        <p>{{ $address->address }}</p>
-                        <button type="button" class="btn btn-primary change-address" data-toggle="modal" data-target="#editAddressModal" data-id="{{ $address->id }}" data-address="{{ $address->address }}">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <p>{{ $contact->address1 }}</p>
                     </div>
                 </div>
-                @endforeach
+                <div data-aos="zoom-in" class="col-md-6">
+                    <div class="footer-contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="footer-contact-text">
+                        <p>{{ $contact->address2 }}</p>
+                    </div>
+                </div>
                 <div data-aos="zoom-in"class="col-md-12">
                     <form>
                         <div class="email-div form-row align-items-center">
@@ -40,34 +41,26 @@
             </div>
             
             <div data-aos="zoom-in"class="col-md-4">
-    			@foreach ($contact as $data)
                 <div class="contact-list-1">
                     <h4>Contact Us</h4>
                     <div class="d-flex align-items-center">
                         <i class="fas fa-phone-alt"></i>
-                        <h6>{{ $data->phoneNumber }}</h6>
-                        <a href="#" class="change-contact" data-toggle="modal" data-target="#editContactModal" data-id="{{ $data->id }}" data-value="{{ $data->phoneNumber }}" data-contact='phoneNumber'><i class="fas fa-edit"></i></a>
+                        <h6>{{ $contact->phoneNumber }}</h6>
                     </div>
                     <div class="d-flex align-items-center">
                         <i class="far fa-envelope"></i>
-                        <h6>{{ $data->email }}</h6>
-                        <a href="#"> <i class="fas fa-edit" class="change-contact" data-toggle="modal" data-target="#editContactModal" data-id="{{ $data->id }}" data-value="{{ $data->email }}" data-contact="email"></i> </a>
+                        <h6>{{ $contact->email }}</h6>
                     </div>
                 </div>
                 <div class="contact-list-2">
                     <h4>Follow Us on</h4>
                     <div class="d-flex">
-                        <a href="{{ ($data->facebook) ? $data->facebook : '' }}"><i class="fab fa-facebook-f"></i></a>
-                        <i class="fas fa-edit" class="change-contact" data-toggle="modal" data-target="#editContactModal" data-id="{{ $data->id }}" data-value="{{ $data->facebook }}" data-contact="facebook"></i>
-                        <a href="{{ ($data->instagram) ? $data->instagram : '' }}"><i class="fab fab fa-instagram"></i></a>
-                        <i class="fas fa-edit" class="change-contact" data-toggle="modal" data-target="#editContactModal" data-id="{{ $data->id }}" data-value="{{ $data->instagram }}" data-contact="instagram"></i>
-                        <a href="{{ ($data->twitter) ? $data->twitter : '' }}"><i class="fab fa-twitter"></i></a>
-                        <i class="fas fa-edit" class="change-contact" data-toggle="modal" data-target="#editContactModal" data-id="{{ $data->id }}" data-value="{{ $data->twitter }}" data-contact="twitter"></i>
-                        <a href="{{ ($data->linkedin) ? $data->linkedin : '' }}"><i class="fab fa-linkedin-in"></i></a>
-                        <i class="fas fa-edit" class="change-contact" data-toggle="modal" data-target="#editContactModal" data-id="{{ $data->id }}" data-value="{{ $data->linkedin }}" data-contact="linkedin"></i>
+                        <a href="{{ ($contact->facebook) ? $contact->facebook : '' }}"><i class="fab fa-facebook-f"></i></a>
+                        <a href="{{ ($contact->instagram) ? $contact->instagram : '' }}"><i class="fab fab fa-instagram"></i></a>
+                        <a href="{{ ($contact->twitter) ? $contact->twitter : '' }}"><i class="fab fa-twitter"></i></a>
+                        <a href="{{ ($contact->linkedin) ? $contact->linkedin : '' }}"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                @endforeach
             </div>
             
         </div>
@@ -79,53 +72,55 @@
     </div>
 </div>
 
-<div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddress1ModalLabel" aria-hidden="true">
+<div class="modal fade" id="editfooterDataModal" tabindex="-1" role="dialog" aria-labelledby="editAddress1ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="editAddress1ModalLabel">Change Address</h5>
+            <h5 class="modal-title" id="editAddress1ModalLabel">Change Footer Details</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form role="form" method="post" action="{{ route('editaddress') }}" enctype="multipart/form-data" id="changeAddressForm">
+        <form role="form" method="post" action="{{ route('editfooterdata') }}" enctype="multipart/form-data" id="changeAddressForm">
             @csrf
+            <input type="hidden" name="id" value="{{ $contact->id }}">
             <div class="modal-body">
                 <div class="card-body">
                     <div class="form-group">
-                        <input type="hidden" id="addressId" name="id">
-                        <label for="address1">Address</label>
-                        <textarea class="form-control" id="address1" placeholder="Enter address" name="address">
+                        <label for="address1">Address 1</label>
+                        <textarea class="form-control" id="address1" placeholder="Enter address" name="address1">
+                            {{ ($contact->address1) ? $contact->address1 : '' }}
                         </textarea>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add</button>
-            </div>
-        </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editContactModal" tabindex="-1" role="dialog" aria-labelledby="editContactModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="editContactModalLabel">Change Contact Detail</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form role="form" method="post" action="{{ route('editcontact') }}" enctype="multipart/form-data" id="changeContactForm">
-            @csrf
-            <div class="modal-body">
-                <div class="card-body">
                     <div class="form-group">
-                        <input type="hidden" id="contactId" name="id">
-                        <label for="contactValue">Contact detail</label>
-                        <input type="text" class="form-control" id="contactValue" placeholder="Enter value" name="contactName">
+                        <label for="address1">Address 2</label>
+                        <textarea class="form-control" id="address1" placeholder="Enter address" name="address2">
+                            {{ ($contact->address2) ? $contact->address2 : '' }}
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone No.</label>
+                        <input type="text" class="form-control" id="phoneNumber" placeholder="Enter phone number" name="phoneNumber"  value="{{ ($contact->phoneNumber) ? $contact->phoneNumber : '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email.</label>
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ ($contact->email) ? $contact->email : '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="facebook">Facebook Link.</label>
+                        <input type="text" class="form-control" id="facebook" placeholder="Enter Facebook Link" name="facebook" value="{{ ($contact->facebookk) ? $contact->facebook : '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram">Instagram Link.</label>
+                        <input type="text" class="form-control" id="instagram" placeholder="Enter Instagram Link" name="instagram" value="{{ ($contact->instagram) ? $contact->instagram : '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="twitter">Twitter Link.</label>
+                        <input type="text" class="form-control" id="twitter" placeholder="Enter Twitter Link" name="twitter" value="{{ ($contact->twitter) ? $contact->twitter : '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin">Linkedin Link.</label>
+                        <input type="text" class="form-control" id="linkedin" placeholder="Enter Linkedin Link" name="linkedin" value="{{ ($contact->linkedin) ? $contact->linkedin : '' }}">
                     </div>
                 </div>
             </div>
@@ -137,21 +132,4 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function(){
-        $(document).on('click', '.change-address', function() {
-            $('#address1').html($(this).data('address'));
-            $('#addressId').val($(this).data('id'));
-        });
-
-        $(document).on('click', '.change-contact', function() {
-            console.log($(this).data('value'), $(this).data('contact'));
-            $('#contactValue').val($(this).data('value'));
-            $('#contactValue').attr('name', $(this).data('contact'));
-            $('#contactId').val($(this).data('id'));
-        });
-    });
-</script>
 

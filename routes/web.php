@@ -32,9 +32,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/admin/product/{id}', [adm
 Route::middleware(['auth:sanctum', 'verified'])->post('/addproduct', [adminProductController::class, 'create'])->name('createproduct');
 Route::get('/gettoken', [productController::class, 'gettoken']);
 Route::get('/adddata', [adminController::class, 'initFooterData'])->name('initFooterData');
-Route::post('/change-address', [adminController::class, 'updateAddress'])->name('editaddress');
-Route::post('/change-contact-detail', [adminController::class, 'updateAddress'])->name('editcontact');
-Route::post('/change-product-detail', [adminProductController::class, 'update'])->name('editproduct');
+Route::middleware(['auth:sanctum', 'verified'])->post('/change-footer-data', [adminController::class, 'updateFooterData'])->name('editfooterdata');
+Route::middleware(['auth:sanctum', 'verified'])->post('/change-product-detail', [adminProductController::class, 'update'])->name('editproduct');
 
 Route::get('createadmin', [adminController::class, 'create'])->name('createAdmin');
 

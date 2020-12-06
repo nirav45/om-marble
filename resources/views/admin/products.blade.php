@@ -26,7 +26,7 @@
 				<a data-tab="products-exotica">Exotica Marble</a>
 				<a>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProductModal">
-						Add +
+						<i class="fa fa-plus"></i>
 					</button>
 				</a>
 				
@@ -54,7 +54,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="createProductModalLabel">Modal title</h5>
+				<h5 class="modal-title" id="createProductModalLabel">Add Product</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
