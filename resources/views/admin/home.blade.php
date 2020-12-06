@@ -27,7 +27,7 @@
 						<h2>Products</h2>
 					</div>
 					<div class="col-md-6 text-right">
-						<a class="btn btn-light" href="products.html" role="button">View All</a>
+						<a class="btn btn-light" href="{{ route('adminproducts') }}" role="button">View All</a>
 					</div>
 				</div>
 				<div data-aos="zoom-in" class="carousel-multi-item text-center">
