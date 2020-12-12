@@ -37,7 +37,7 @@
 					<a href="{{ route('adminproduct', ['id' => $product->id]) }}">
 						<div data-aos="zoom-in" class="card">
 							<div class="card-img">
-						  		<img class="card-img-top" src="{{ asset('storage/'.$product->image)}}">
+						  		<img class="card-img-top" src="{{ asset($product->image)}}">
 						  	</div>
 						  	<div class="card-body">
 						  		<h5>{{ $product->name }}</h5>

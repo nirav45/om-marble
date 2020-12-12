@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class adminProductController extends Controller
 {
@@ -16,7 +16,7 @@ class adminProductController extends Controller
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
-        $path = $request->file('image')->store('products');
+        $path= Storage::disk('public')->put('products/', $request->file('image'));
         $product->image = $path;
         $product->save();
         
@@ -29,7 +29,7 @@ class adminProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products');
+            $path= Storage::disk('public')->put('products/', $request->file('image'));
             $product->image = $path;
         }
         $product->save();

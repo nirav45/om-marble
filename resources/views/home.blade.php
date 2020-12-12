@@ -39,7 +39,7 @@
 										<h5>{{ $product->name }}</h5>
 									</div>
 									<div class="card-img">
-										<img class="card-img-bottom" src="{{ asset('storage/'.$product->image)}}">
+										<img class="card-img-bottom" src="{{ asset($product->image)}}">
 									</div>
 								</div>
 							</a>

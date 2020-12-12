@@ -23,7 +23,7 @@
 			<div class="row row-flex">
 				<div data-aos="zoom-in" class="col-md-6 text-center">
 					<div class="products-image shadow-lg p-1 mb-3 bg-secondary rounded">
-						<img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}">
+						<img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
 					</div>
 				</div>
 				<div class="col-md-6">
