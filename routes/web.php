@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\contactController;
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\admin\adminaboutusController;
 use App\Http\Controllers\admin\adminProductController;
@@ -24,6 +25,7 @@ Route::get('/', [homeController::class, 'index'])->name('home');
 Route::get('/products', [productController::class, 'index'])->name('products');
 Route::get('/aboutus', [aboutusController::class, 'index'])->name('aboutus');
 Route::get('/product/{id}', [productController::class, 'get'])->name('product');
+Route::get('/contact', [contactController::class, 'index'])->name('contact');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [adminHomeController::class, 'index'])->name('adminhome');
 Route::middleware(['auth:sanctum', 'verified'])->get('/admin/products', [adminProductController::class, 'index'])->name('adminproducts');

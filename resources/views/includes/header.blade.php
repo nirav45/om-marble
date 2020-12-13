@@ -19,7 +19,7 @@
                     <a class="nav-link {{ $page == 'aboutus' ? 'active' : '' }}" href="{{route('aboutus')}}">About Us</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link {{ $page == 'contactus' ? 'active' : '' }}" href="#">Contact Us</a>
+                    <a class="nav-link {{ $page == 'contactus' ? 'active' : '' }}" href="{{route('contact')}}">Contact Us</a>
                     </li>
                 </ul>
             </div>

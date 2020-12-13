@@ -22,12 +22,15 @@
         <script type="text/javascript" src="/js/wow.min.js"></script>
         <script src="/js/owl.carousel.min.js"></script>
 
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+  	    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     </head>
     <body>
-        @include('../includes/header');
+        @include('../includes/header')
         @yield('content')
-        @include('../includes/footer');
+        @include('../includes/footer')
         <script src="/js/myScript.js"></script>
     </body>
 </html>
