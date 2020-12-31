@@ -174,7 +174,6 @@
 				rules: {
 					name: {
 						required: true,
-						noSpace: true
 					},
 					description: {
 						required: true,

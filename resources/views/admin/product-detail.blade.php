@@ -12,9 +12,9 @@
 					<ul>
                         <li><a href="{{route('home')}}">Home</a></li>
 						<li><i class="fas fa-arrow-circle-right"></i></li>
-						<li><a href="{{route('products')}}">Products</a></li>
+						<li><a href="{{route('adminproducts')}}">Products</a></li>
 						<li><i class="fas fa-arrow-circle-right"></i></li>
-						<li class="active"><a href="{{route('product', ['id' => $product->id])}}">{{ $product->name }}</a></li>
+						<li class="active"><a href="{{route('adminproduct', ['id' => $product->id])}}">{{ $product->name }}</a></li>
 					</ul>
 				</div>
 			</div>
