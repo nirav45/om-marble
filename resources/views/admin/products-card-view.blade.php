@@ -6,7 +6,9 @@
 							<div class="relative">
 								<img src="{{ asset($product->image)}}">
 								<div class="absolute flex-column text-center d-flex justify-content-center align-items-center">
-									<h3>{{ $product->name }}</h3>
+									<h3>{{ $product->name }}
+									<a class="btn edit-product" data-productid="{{ $product->id }}" data-productname="{{ $product->name }}" data-description="{{ $product->description }}" data-toggle="modal" data-target="#editProductModal"><i class="fa fa-edit"></i></a>
+									</h3>
 									<a href="{{route('adminproduct', ['id' => $product->id, 'category' => $product->category])}}">
 										<button class="learn-more">
 											<span class="circle" aria-hidden="true">

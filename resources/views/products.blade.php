@@ -45,7 +45,7 @@
         /* var categories = "white-marble"; */
 
         $.ajax({
-            url: '{{ url('/getproducts') }}',
+            url: '{{ url("/getproducts") }}',
             type: 'GET',
             cache: false,
             data: { 'category': categories},
