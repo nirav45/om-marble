@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 
 class productController extends Controller
@@ -23,7 +25,23 @@ class productController extends Controller
     {
         $product = Product::find($request->id);
         $contact = Contact::first();
-        return view('product-detail', ['product' => $product, 'page' => 'products', 'contact' => $contact]);
+        $products = Product::all()->where('category','=',$request->category);
+        return view('product-detail', ['products' => $products, 'product' => $product, 'page' => 'products', 'contact' => $contact]);
+    }
+
+    public function getproducts(Request $request)
+    {
+        if (str_contains($request->category,'all')) {
+            $products = Product::all();
+        }else{
+            $products = Product::all()->where('category','=',$request->category);
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'html'=> view('products-card-view',compact('products'))->render(),
+            ]);
     }
 
 

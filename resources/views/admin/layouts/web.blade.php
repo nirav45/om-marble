@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Om Marbles - @yield('title')</title>
+        <title>@yield('title') | Om Marbles</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,13 +12,11 @@
         <link rel="stylesheet" href="/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="/css/fontawesome.min.css">
         <link rel="stylesheet" type="text/css" href=" /css/animate.css">
-        <link rel="stylesheet" href="/css/aos.css" >
 
         <script src="/js/javascript.js"></script>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/aos.js"></script>
         <script type="text/javascript" src="/js/wow.min.js"></script>
         <script src="/js/owl.carousel.min.js"></script>
 

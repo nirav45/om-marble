@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class adminProductController extends Controller
 {
-    
+
     public function create(Request $request)
     {
         $product = new Product;
@@ -19,7 +19,7 @@ class adminProductController extends Controller
         $path= Storage::disk('public')->put('products/', $request->file('image'));
         $product->image = $path;
         $product->save();
-        
+
         return redirect()->route('adminproducts');
     }
 
@@ -33,7 +33,7 @@ class adminProductController extends Controller
             $product->image = $path;
         }
         $product->save();
-        
+
         return redirect()->route('adminproduct', ['id' => $product->id]);
     }
 
@@ -44,10 +44,26 @@ class adminProductController extends Controller
         return view('admin/products', ['products' => $products, 'page' => 'products', 'contact' => $contact]);
     }
 
+    public function getproducts(Request $request)
+    {
+        if (str_contains($request->category,'all')) {
+            $products = Product::all();
+        }else{
+            $products = Product::all()->where('category','=',$request->category);
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'html'=> view('admin/products-card-view',compact('products'))->render(),
+            ]);
+    }
+
     public function get(Request $request)
     {
         $product = Product::find($request->id);
         $contact = Contact::first();
-        return view('admin/product-detail', ['product' => $product, 'page' => 'products', 'contact' => $contact]);
+        $products = Product::all()->where('category','=',$request->category);
+        return view('admin/product-detail', ['products' => $products, 'product' => $product, 'page' => 'products', 'contact' => $contact]);
     }
 }

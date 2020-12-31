@@ -3,44 +3,76 @@
 @section('title', 'Products')
 
 @section('content')
-	<div class="products-details">
-		<div class="breadscrumb-section">
-			<div class="container">
-				<div class="breadscrumb-content">
-					<h2>Products</h2>
-					<ul>
-						<li>Home</li>
-						<li><i class="fas fa-arrow-circle-right"></i></li>
-						<li class="active">Products</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="navigator-menu">
+        <div class="breadscrumb-section">
+            <div class="container">
+                <div class="breadscrumb-content wow bounceInLeft">
+                    <h2>Products</h2>
+                    <ul>
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><i class="fas fa-arrow-circle-right"></i></li>
+                        <li class="{{ $page == 'products' ? 'active' : '' }}"><a href="{{route('products')}}">Products</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<div class="products-inner-section">
 		<div class="container">
 			<div class="products-filter">
-				<a class="active" data-tab="all-products">All <i class="fas fa-arrow-right"></i></a>
-				<a data-tab="products-grey">Grey Marble</a>
-				<a data-tab="products-exotica">Exotica Marble</a>
-			</div>
-			<div class="row row-flex text-center">
-			@foreach ($products as $product)
-				<div class="col-md-3">
-					<a href="{{route('product', ['id' => $product->id])}}">
-						<div data-aos="zoom-in" class="card">
-							<div class="card-img">
-						  		<img class="card-img-top" src="{{ asset($product->image)}}">
-						  	</div>
-						  	<div class="card-body">
-						  		<h5>{{ $product->name }}</h5>
-						  	</div>
-						</div>
-					</a>
-				</div>
-			@endforeach
+                <a class="btn active" onclick="getProduscts('all')" data-wipe="All">All</a>
+				<a class="btn" onclick="getProduscts('grey-marble')" data-wipe="Grey Marble">Grey Marble</a>
+				<a class="btn" onclick="getProduscts('white-marble')" data-wipe="White Marble">White Marble</a>
+				<a class="btn" onclick="getProduscts('wall-marble')" data-wipe="Wall Marble">Wall Marble</a>
+				<a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Nitco Marble">Nitco Marble</a>
+            </div>
+
+            <div class="row products-grid-view" id="products-cards">
+
 			</div>
 		</div>
-	</div>
+    </div>
+
+    <script type="text/javascript">
+
+    $( document ).ready(function() {
+        getProduscts('all');
+    });
+
+    function getProduscts(categories){
+
+        /* var categories = "white-marble"; */
+
+        $.ajax({
+            url: '{{ url('/getproducts') }}',
+            type: 'GET',
+            cache: false,
+            data: { 'category': categories},
+            datatype: 'html',
+            success: function(data){
+                $('#products-cards').html(data.html);
+            },
+            error: function(jqXHR, exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                alert(msg);
+            }
+        });
+    }
+    </script>
 @endsection
