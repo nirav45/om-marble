@@ -6,10 +6,6 @@
 				$('.loader-new').fadeOut("slow");
 			},2000);
 
-			jQuery.validator.addMethod("noSpace", function(value, element) { 
-				return value.indexOf(" ") < 0 && value != ""; 
-			}, "This field is requireed");
-
 			$(".products-carousel").owlCarousel({
 				margin:10,
 				autoplay:true,

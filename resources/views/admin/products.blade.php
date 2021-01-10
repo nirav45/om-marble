@@ -89,6 +89,14 @@
 							<input type="text" class="form-control" id="description" placeholder="Description" name="description" required>
 						</div>
 						<div class="form-group">
+							<label for="category">Category</label>
+							<select class="form-control" id="category"name="category">
+								<option>Type 1</option>
+								<option>Type 2</option>
+								<option>Type 3</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="image">Image</label>
 							<div class="input-group">
 								<div class="custom-file">
@@ -182,11 +190,9 @@
 				messages: {
 					name: {
 						required: "Please enter name",
-						noSpace: "Please enter name"
 					},
 					description: {
-						required: "Please give description about product",
-						noSpace: "Please give description about product"
+						required: "Please give description about product"
 					},
 				}
 			});
@@ -202,12 +208,10 @@
 				},
 				messages: {
 					name: {
-						required: "Please enter name",
-						noSpace: "Please enter name"
+						required: "Please enter name"
 					},
 					description: {
-						required: "Please give description about product",
-						noSpace: "Please give description about product"
+						required: "Please give description about product"
 					},
 				}
 			});
