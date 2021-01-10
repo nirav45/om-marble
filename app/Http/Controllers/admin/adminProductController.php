@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -40,8 +41,9 @@ class adminProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $categories = Category::all();
         $contact = Contact::first();
-        return view('admin/products', ['products' => $products, 'page' => 'products', 'contact' => $contact]);
+        return view('admin/products', ['products' => $products, 'page' => 'products', 'contact' => $contact, 'categories' => $categories]);
     }
 
     public function getproducts(Request $request)
