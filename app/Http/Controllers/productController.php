@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
 use Exception;
@@ -18,7 +19,8 @@ class productController extends Controller
     {
         $contact = Contact::first();
         $products = Product::all();
-        return view('products', ['products' => $products, 'page' => 'products', 'contact' => $contact]);
+        $categories = Category::all();
+        return view('products', ['products' => $products, 'page' => 'products', 'contact' => $contact,  'categories' => $categories]);
     }
 
     public function get(Request $request)
@@ -33,7 +35,7 @@ class productController extends Controller
     {
         if (str_contains($request->category,'all')) {
             $products = Product::all();
-        }else{
+        } else {
             $products = Product::all()->where('category','=',$request->category);
         }
 

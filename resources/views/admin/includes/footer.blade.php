@@ -1,5 +1,6 @@
 <div class="footer container-fluid">
     <div class="footer-copyright text-center">
+        <a data-toggle="modal" data-target="#editfooterDataModal"><i class="fa fa-edit"></i></a>
         <div class="d-md-flex justify-content-between align-items-center">
             <div>
                 <p>© 2020 Om Marble. All Rights Reserved.</p>

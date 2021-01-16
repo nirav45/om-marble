@@ -17,6 +17,7 @@ class adminProductController extends Controller
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->category = $request->category;
         $path= Storage::disk('public')->put('products/', $request->file('image'));
         $product->image = $path;
         $product->save();
@@ -24,11 +25,27 @@ class adminProductController extends Controller
         return redirect()->route('adminproducts');
     }
 
+    public function createCategory(Request $request)
+    {
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('adminproducts');
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        Product::destroy($request->productId);
+        return true;
+    }
+
     public function update(Request $request)
     {
         $product = Product::find($request->id);
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->category = $request->category;
         if ($request->hasFile('image')) {
             $path= Storage::disk('public')->put('products/', $request->file('image'));
             $product->image = $path;
