@@ -18,38 +18,6 @@
         </div>
     </div>
 
-	{{-- <div class="products-inner-section">
-		<div class="container">
-			<div class="products-filter">
-				<a class="active" data-tab="all-products">All <i class="fas fa-arrow-right"></i></a>
-				<a data-tab="products-grey">Grey Marble</a>
-				<a data-tab="products-exotica">Exotica Marble</a>
-				<a>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProductModal">
-						<i class="fa fa-plus"></i>
-					</button>
-				</a>
-
-			</div>
-			<div class="row row-flex text-center">
-			@foreach ($products as $product)
-				<div class="col-md-3">
-					<a href="{{ route('adminproduct', ['id' => $product->id]) }}">
-						<div data-aos="zoom-in" class="card">
-							<div class="card-img">
-						  		<img class="card-img-top" src="{{ asset($product->image)}}">
-						  	</div>
-						  	<div class="card-body">
-						  		<h5>{{ $product->name }}</h5>
-						  	</div>
-						</div>
-					</a>
-				</div>
-			@endforeach
-			</div>
-		</div>
-    </div> --}}
-
     <div class="products-inner-section">
 		<div class="container">
 			<div class="products-filter">
@@ -57,7 +25,8 @@
 				<a class="btn" onclick="getProduscts('grey-marble')" data-wipe="Grey Marble">Grey Marble</a>
 				<a class="btn" onclick="getProduscts('white-marble')" data-wipe="White Marble">White Marble</a>
 				<a class="btn" onclick="getProduscts('wall-marble')" data-wipe="Wall Marble">Wall Marble</a>
-				<a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Nitco Marble">Nitco Marble</a>
+                <a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Nitco Marble">Nitco Marble</a>
+                <a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Add New Category">Add New Category</a>
 				<a class="btn" data-toggle="modal" data-target="#createProductModal"><i class="fa fa-plus"></i></a>
             </div>
 
@@ -90,7 +59,7 @@
 						</div>
 						<div class="form-group">
 							<label for="category">Category</label>
-							<select class="form-control" id="category"name="category">
+							<select class="form-control" id="category" name="category">
 								<option>Type 1</option>
 								<option>Type 2</option>
 								<option>Type 3</option>
