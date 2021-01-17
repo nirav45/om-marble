@@ -15,7 +15,16 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => ''
+            'name' => 'GREY MARBLE'
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'WHITE MARBLE'
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'WALL MARBLE'
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'NITCO MARBLE'
         ]);
     }
 }

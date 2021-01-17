@@ -22,12 +22,21 @@
 		<div class="container">
 			<div class="products-filter">
                 <a class="btn active" onclick="getProduscts('all')" data-wipe="All">All</a>
+<<<<<<< HEAD
 				<a class="btn" onclick="getProduscts('grey-marble')" data-wipe="Grey Marble">Grey Marble</a>
 				<a class="btn" onclick="getProduscts('white-marble')" data-wipe="White Marble">White Marble</a>
 				<a class="btn" onclick="getProduscts('wall-marble')" data-wipe="Wall Marble">Wall Marble</a>
                 <a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Nitco Marble">Nitco Marble</a>
                 <a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Add New Category">Add New Category</a>
 				<a class="btn" data-toggle="modal" data-target="#createProductModal"><i class="fa fa-plus"></i></a>
+=======
+				@foreach ($categories as $category)
+				<a class="btn" onclick="getProduscts({{ $category->id }})" data-wipe="{{ $category->name }}">{{ $category->name }}</a>
+                @endforeach
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProductModal">Add Product</button>
+				&nbsp;
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">Add Category</i></button>
+>>>>>>> 2968783fad2e24c4a1318d75cfe0e6368c769e86
             </div>
 
             <div class="row products-grid-view" id="products-cards">
@@ -59,10 +68,17 @@
 						</div>
 						<div class="form-group">
 							<label for="category">Category</label>
+<<<<<<< HEAD
 							<select class="form-control" id="category" name="category">
 								<option>Type 1</option>
 								<option>Type 2</option>
 								<option>Type 3</option>
+=======
+							<select class="form-control" id="category"name="category">
+								@foreach ($categories as $category)
+								<option value={{ $category->id }}>{{ $category->name }}</option>
+								@endforeach
+>>>>>>> 2968783fad2e24c4a1318d75cfe0e6368c769e86
 							</select>
 						</div>
 						<div class="form-group">
@@ -73,6 +89,34 @@
 									<label class="custom-file-label" for="image">Choose file</label>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Add</button>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="createCategoryModalLabel">Add Category</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form role="form" method="post" action="{{ route('createcategory') }}" enctype="multipart/form-data">
+				@csrf
+				<div class="modal-body">
+					<div class="card-body">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
 						</div>
 					</div>
 				</div>
@@ -107,7 +151,16 @@
                                 <label for="name">Description</label>
                                 <textarea class="form-control" id="description" placeholder="Enter description" name="description" required>
                                 </textarea>
-                            </div>
+							</div>
+							<div class="form-group">
+								<label for="category">Category</label>
+								<select class="form-control" id="category"name="category">
+									<option value="">Select Category</option>
+									@foreach ($categories as $category)
+									<option value={{ $category->id }}>{{ $category->name }}</option>
+									@endforeach
+								</select>
+							</div>
                             <div class="form-group">
 								<label for="image">Image</label>
 								<div class="input-group">
@@ -143,8 +196,57 @@
 			$(document).on('click', '.edit-product', function() {
 				$('#editProductForm input[name="id"]').val($(this).data('productid'));
 				$('#editProductForm input[name="name"]').val($(this).data('productname'));
-				$('#editProductForm input[name="description"]').html($(this).data('description'));
-				console.log($(this).data('productid'), $('#productId').val());
+				$('#editProductForm select[name="category"]').val($(this).data('category'));
+				$('#editProductForm textarea[name="description"]').html($(this).data('description'));
+			});
+			$(document).on('click', '.delete-product', function() {
+				var productId = $(this).data('productid');
+				var productBox =  $(this).parents('.product-view');
+				
+				swal({
+					title: "Are you sure?",
+					text: "You want to delete this product",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							url: '{{ route("deleteproduct") }}',
+							type: 'GET',
+							cache: false,
+							data: { 'productId': productId},
+							success: function(data){
+								productBox.remove();
+								swal("Product deleted successfully.", {
+									icon: "success",
+								});
+							},
+							error: function(jqXHR, exception){
+								var msg = '';
+								if (jqXHR.status === 0) {
+								msg = 'Not connect.\n Verify Network.';
+								} else if (jqXHR.status == 404) {
+									msg = 'Requested page not found. [404]';
+								} else if (jqXHR.status == 500) {
+									msg = 'Internal Server Error [500].';
+								} else if (exception === 'parsererror') {
+									msg = 'Requested JSON parse failed.';
+								} else if (exception === 'timeout') {
+									msg = 'Time out error.';
+								} else if (exception === 'abort') {
+									msg = 'Ajax request aborted.';
+								} else {
+									msg = 'Uncaught Error.\n' + jqXHR.responseText;
+								}
+								alert(msg);
+							}
+						});
+					} else {
+						
+					}
+				});
 			});
 
 			$('#editProductForm').validate({

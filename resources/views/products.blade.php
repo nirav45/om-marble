@@ -22,10 +22,9 @@
 		<div class="container">
 			<div class="products-filter">
                 <a class="btn active" onclick="getProduscts('all')" data-wipe="All">All</a>
-				<a class="btn" onclick="getProduscts('grey-marble')" data-wipe="Grey Marble">Grey Marble</a>
-				<a class="btn" onclick="getProduscts('white-marble')" data-wipe="White Marble">White Marble</a>
-				<a class="btn" onclick="getProduscts('wall-marble')" data-wipe="Wall Marble">Wall Marble</a>
-				<a class="btn" onclick="getProduscts('nitco-marble')" data-wipe="Nitco Marble">Nitco Marble</a>
+                @foreach ($categories as $category)
+				<a class="btn" onclick="getProduscts({{ $category->id }})" data-wipe="{{ $category->name }}">{{ $category->name }}</a>
+                @endforeach
             </div>
 
             <div class="row products-grid-view" id="products-cards">

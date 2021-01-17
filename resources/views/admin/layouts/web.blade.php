@@ -20,6 +20,7 @@
         <script type="text/javascript" src="/js/wow.min.js"></script>
         <script src="/js/owl.carousel.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
     </head>
